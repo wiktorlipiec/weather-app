@@ -25,5 +25,20 @@ function postData(latitude,longitude) {
         })
     }).then(res => res.json()).then(data => {
         console.log(data);
+        setWeatherData(data[0])
     })
+}
+
+function setWeatherData(data) {
+    const weatherForecast = document.querySelector('.weather-forecast');
+
+    //temperature
+    const temperature = document.createElement('p');
+    temperature.textContent = `Temperature: ${data.current.temperature}`;
+    weatherForecast.append(temperature);
+
+    //weather icon
+    const img = document.createElement('img');
+    img.src = data.current.weather_icons[0];
+    weatherForecast.append(img);
 }
